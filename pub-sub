@@ -1,0 +1,35 @@
+var PubSub = (function(){
+  var eventObj = {};
+  var subscribe = function(event, obj){
+      if(!eventObj[event]){
+		eventObj[event] = [];
+      }
+      eventObj[event].push(obj);
+    };
+  var publish= function(event){
+      var fnArr = eventObj[event];
+      if (fnArr) {
+         fnArr.forEach(function(item, index){
+            item();
+         });
+      }
+    };
+  var off= function(event, fn){
+      var fnArr = eventObj[event];
+      if(fnArr){
+		  eventObj[event] = fnArr.filter(function(item){
+           return item !== fn;
+        });
+      }
+    };
+  var  get= function(){
+        console.log(eventObj);
+    }
+
+   return {        
+		    subscribe: subscribe,
+        publish: publish,
+        off: off,
+        get: get
+   }  
+}());
