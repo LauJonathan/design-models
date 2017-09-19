@@ -33,7 +33,7 @@ var PubSub = (function(){
     }
 
    return {        
-		    subscribe: subscribe,
+	subscribe: subscribe,
         publish: publish,
         off: off,
         get: get
